@@ -97,10 +97,3 @@ chmod +x gradlew
 * **UI/UX:** Cyberpunk Dark Theme, Custom Radar Visualizer, Material Design
 
 ---
-
-<div align="center">
-
-Made with passion for spatial sound enthusiasts.  
-⭐ **Star this repository if you like the project!**
-
-</div>
