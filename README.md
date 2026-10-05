@@ -9,7 +9,7 @@
 [![Engine](https://img.shields.io/badge/DSP-Binaural%208D-ff007f?style=flat-square)](#-spatial-8d-audio-engine)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-**Developed with ❤️ by Mk Hossain**
+**Developed with ❤️ by No Coder Pro**
 
 ---
 
@@ -43,17 +43,50 @@
 
 ---
 
-## 🚀 One-Click Build
+## 💻 Build Without Android Studio (CLI)
 
-The project includes an automated Python build & cleanup script:
+You can build the complete production APK directly from the terminal without installing or opening Android Studio.
+
+### 📋 Prerequisites
+* **JDK 17+** installed and available in PATH.
+* **Android SDK** (Command-line tools or SDK platform `android-34`).
+* *Set your SDK path in `local.properties`:*
+  ```properties
+  # Windows
+  sdk.dir=C\:/Users/<YourUsername>/AppData/Local/Android/Sdk
+
+  # Linux / macOS
+  sdk.dir=/home/<YourUsername>/Android/Sdk
+  ```
+
+---
+
+### 🚀 Option 1: One-Click Build & Auto-Cleanup (Python)
+
+Runs full compilation, R8 minification, copies the release APK to root as `dimen_shon.apk`, and cleans all temporary build cache:
 
 ```bash
-# Build optimized release APK & clean build artifacts
 python build.py
 ```
 
-* Output APK: `dimen_shon.apk` *(~1.86 MB)*
-* All temporary cache and build folders are automatically removed to keep your repository clean for GitHub.
+* Output APK: **`dimen_shon.apk`** *(~1.86 MB in root folder)*
+
+---
+
+### ⚡ Option 2: Build using Gradle Wrapper
+
+#### **Windows (Command Prompt / PowerShell):**
+```cmd
+.\gradlew.bat assembleRelease
+```
+
+#### **Linux / macOS:**
+```bash
+chmod +x gradlew
+./gradlew assembleRelease
+```
+
+* Output APK path: `app/build/outputs/apk/release/app-release.apk`
 
 ---
 
