@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="logo.png" alt="DIMEN SHON 8D Logo" width="140">
+
 # 🎧 DIMEN SHON 8D
 
 ### *Your music, in an immersive 360° spatial dimension.*
@@ -97,3 +99,10 @@ chmod +x gradlew
 * **UI/UX:** Cyberpunk Dark Theme, Custom Radar Visualizer, Material Design
 
 ---
+
+<div align="center">
+
+Made with passion for spatial sound enthusiasts.  
+⭐ **Star this repository if you like the project!**
+
+</div>
