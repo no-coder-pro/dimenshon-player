@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playerCoordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <!-- Main Player Screen Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="64dp">
+
+        <!-- Top Navigation Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp">
+
+            <ImageButton
+                android:id="@+id/btnCollapsePlayer"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_card_rounded"
+                android:contentDescription="Collapse"
+                android:src="@drawable/ic_arrow_down"
+                app:tint="@color/text_primary" />
+
+            <LinearLayout
+                android:id="@+id/llTopRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnSleepTimer"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_card_rounded"
+                    android:contentDescription="Sleep Timer"
+                    android:src="@drawable/ic_timer"
+                    app:tint="@color/secondary" />
+
+                <ImageButton
+                    android:id="@+id/btnResetEffects"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_card_rounded"
+                    android:contentDescription="Reset Audio Effects"
+                    android:src="@drawable/ic_reset"
+                    app:tint="@color/accent_pink" />
+
+                <ImageButton
+                    android:id="@+id/btnEqualizer"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_card_rounded"
+                    android:contentDescription="Equalizer"
+                    android:src="@drawable/ic_equalizer"
+                    app:tint="@color/secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/llTopRight"
+                android:layout_toEndOf="@+id/btnCollapsePlayer"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="NOW PLAYING"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Dimen 8D Spatial Audio"
+                    android:textColor="@color/secondary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 3D Spatial Orbit Visualizer (Compact 140dp) -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/bg_card_rounded"
+            android:padding="6dp">
+
+            <com.spatial.sound8dplayer.SpatialVisualizerView
+                android:id="@+id/playerVisualizer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <!-- Headphone Indicator -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:text="🎧 Best experienced with stereo headphones"
+            android:textColor="@color/secondary"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <!-- Song Info -->
+        <TextView
+            android:id="@+id/tvPlayerTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Song Title Here" />
+
+        <TextView
+            android:id="@+id/tvPlayerArtist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            tools:text="Artist Name" />
+
+        <!-- Quick Audio Presets (8D Normal, Slowed+Reverb, Nightcore) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPresetNormal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primary"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="8D Normal"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnPresetSlowed"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1.2"
+                android:backgroundTint="@color/bg_card_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="Slow-Reverb"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnPresetNightcore"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:backgroundTint="@color/bg_card_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="Nightcore"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Spatial Modes Selector (OFF, 3D, 8D, 16D) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_card_rounded"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/btnModeOff"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_card_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="OFF"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnMode3D"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_card_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="3D"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnMode8D"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primary"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="8D"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnMode16D"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/bg_card_light"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="16D"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Sound Effects Card (Custom Speed, Voice Tone/Pitch, 8D Orbit, Bass, Reverb) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_card_rounded"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="5dp">
+
+            <!-- 1. Track Speed / Tempo -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track Speed"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10.5sp" />
+
+                <TextView
+                    android:id="@+id/tvPlayerPlaybackSpeedValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="1.00x"
+                    android:textColor="@color/secondary"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <SeekBar
+                android:id="@+id/sbPlayerPlaybackSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="30"
+                android:progress="10"
+                android:progressTint="@color/secondary"
+                android:thumbTint="@color/secondary" />
+
+            <!-- 2. Voice Pitch / Tone (Mota / Cikon) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voice Tone"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10.5sp" />
+
+                <TextView
+                    android:id="@+id/tvPlayerPitchValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="1.00x (Natural)"
+                    android:textColor="@color/secondary"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <SeekBar
+                android:id="@+id/sbPlayerPitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="30"
+                android:progress="10"
+                android:progressTint="@color/secondary"
+                android:thumbTint="@color/secondary" />
+
+            <!-- 3. Orbit Speed & Bass in a 2-column row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
+
+                <!-- Orbit Speed Column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8D Orbit"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvPlayerSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="1.0x"
+                            android:textColor="@color/primary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <SeekBar
+                        android:id="@+id/sbPlayerSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="30"
+                        android:progress="10"
+                        android:progressTint="@color/primary"
+                        android:thumbTint="@color/primary" />
+                </LinearLayout>
+
+                <!-- Deep Bass Column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Deep Bass"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvPlayerBassValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="60%"
+                            android:textColor="@color/accent_pink"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <SeekBar
+                        android:id="@+id/sbPlayerBass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="1000"
+                        android:progress="600"
+                        android:progressTint="@color/accent_pink"
+                        android:thumbTint="@color/accent_pink" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Reverb Selection Spinner -->
+            <Spinner
+                android:id="@+id/spPlayerReverb"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_card_light"
+                android:popupBackground="@color/bg_card" />
+        </LinearLayout>
+
+        <!-- Thicker, Highly Visible Seek Bar (Enhanced Visibility) -->
+        <SeekBar
+            android:id="@+id/sbPlayerProgress"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_marginTop="6dp"
+            android:maxHeight="6dp"
+            android:minHeight="6dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:progressDrawable="@drawable/bg_seekbar_track"
+            android:splitTrack="false"
+            android:thumb="@drawable/bg_seekbar_thumb" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:id="@+id/tvPlayerCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvPlayerTotalDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="0:00"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <!-- Playback Controls Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnLoopMode"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Shuffle or Loop"
+                android:padding="8dp"
+                android:src="@drawable/ic_repeat"
+                app:tint="@color/text_secondary" />
+
+            <ImageButton
+                android:id="@+id/btnPlayerPrev"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Previous"
+                android:src="@drawable/ic_prev" />
+
+            <ImageButton
+                android:id="@+id/btnPlayerPlayPause"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/bg_circle_button"
+                android:contentDescription="Play/Pause"
+                android:elevation="6dp"
+                android:src="@drawable/ic_play" />
+
+            <ImageButton
+                android:id="@+id/btnPlayerNext"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Next"
+                android:src="@drawable/ic_next" />
+
+            <ImageButton
+                android:id="@+id/btnPlayerFavorite"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle Favorite"
+                android:padding="8dp"
+                android:src="@drawable/ic_star_outline" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Up Next / Current Queue Expandable Draggable BottomSheet -->
+    <LinearLayout
+        android:id="@+id/bottomSheetQueue"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:background="@drawable/bg_bottom_sheet_queue"
+        android:elevation="16dp"
+        android:orientation="vertical"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="58dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- Bottom Sheet Peek / Drag Header -->
+        <LinearLayout
+            android:id="@+id/llQueueHeader"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <!-- Drag handle -->
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="6dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/ic_drag_handle" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UP NEXT &amp; QUEUE"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvQueueBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_card_rounded"
+                        android:paddingStart="6dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="2dp"
+                        android:text="0 Songs"
+                        android:textColor="@color/secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivQueueChevron"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chevron_up"
+                    app:tint="@color/text_secondary" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Queue Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#242940" />
+
+        <!-- Queue Song List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPlayerQueue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="24dp" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

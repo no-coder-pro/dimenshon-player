@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:background="?attr/selectableItemBackground"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <!-- Thumbnail Card with Play/Preview Overlay -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardThumb"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:cardBackgroundColor="@color/bg_card_light"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_music_note" />
+
+        <!-- Dark subtle overlay -->
+        <View
+            android:id="@+id/viewThumbOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33000000" />
+
+        <!-- Play / Pause Preview Icon -->
+        <ImageView
+            android:id="@+id/ivPlayPreview"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_circle_button"
+            android:backgroundTint="#B30B0E14"
+            android:padding="6dp"
+            android:src="@drawable/ic_play"
+            app:tint="@color/secondary" />
+
+        <!-- Loading Spinner when buffering preview stream -->
+        <ProgressBar
+            android:id="@+id/pbPreviewLoading"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/secondary"
+            android:visibility="gone" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Download Button -->
+    <LinearLayout
+        android:id="@+id/btnDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_card_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_download"
+            app:tint="@color/secondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="GET"
+            android:textColor="@color/secondary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Center Info Column -->
+    <LinearLayout
+        android:id="@+id/llSongInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/btnDownload"
+        android:layout_toEndOf="@+id/cardThumb"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOnlineTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="Song Title Here" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Source Badge -->
+            <TextView
+                android:id="@+id/tvSourceBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:paddingStart="5dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="1dp"
+                android:text="YouTube"
+                android:textColor="#FF3366"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOnlineArtist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                tools:text="Artist Name • 3:45" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

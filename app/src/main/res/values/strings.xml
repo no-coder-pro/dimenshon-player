@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Dimen শোন</string>
+    <string name="spatial_audio">3D / 8D / 16D Audio</string>
+    <string name="wear_headphones">🎧 Please wear headphones for 3D/8D effect</string>
+    <string name="mode_off">Normal Stereo</string>
+    <string name="mode_3d">3D Surround</string>
+    <string name="mode_8d">8D Orbit</string>
+    <string name="mode_16d">16D Ultra Orbit</string>
+    <string name="rotation_speed">Rotation Speed</string>
+    <string name="bass_boost">Bass Boost</string>
+    <string name="reverb_preset">Reverb Effect</string>
+    <string name="no_songs_found">No music files found in storage</string>
+    <string name="scan_music">Scan Device</string>
+    <string name="pick_file">Open File</string>
+    <string name="equalizer">Equalizer</string>
+</resources>

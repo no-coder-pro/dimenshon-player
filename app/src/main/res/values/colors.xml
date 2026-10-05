@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#8A2BE2</color>
+    <color name="primary_variant">#4A0E78</color>
+    <color name="secondary">#00E5FF</color>
+    <color name="secondary_variant">#00B0FF</color>
+    <color name="accent_pink">#FF007F</color>
+    
+    <!-- Backgrounds -->
+    <color name="bg_dark">#0D0E15</color>
+    <color name="bg_card">#161824</color>
+    <color name="bg_card_light">#222638</color>
+    <color name="bg_elevated">#1E2235</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#9CA3AF</color>
+    <color name="text_muted">#6B7280</color>
+    
+    <!-- Visualizer & Orbit Colors -->
+    <color name="orbit_ring">#2A304D</color>
+    <color name="orbit_sound_left">#00E5FF</color>
+    <color name="orbit_sound_right">#FF007F</color>
+    <color name="orbit_head">#FFFFFF</color>
+    
+    <!-- Sliders and buttons -->
+    <color name="slider_track">#333952</color>
+    <color name="chip_checked">#8A2BE2</color>
+</resources>
